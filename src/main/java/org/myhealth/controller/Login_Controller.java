@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.myhealth.dboperations.User_DataOperation;
+import org.myhealth.DAO.User_DataOperation;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -36,7 +36,7 @@ public class Login_Controller {
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/signup.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/view/signup.fxml"));
 
             Scene scene = new Scene(loader.load(), 400, 350);
 
@@ -73,7 +73,7 @@ public class Login_Controller {
 
             try {
                 // Loads dashboard page after successful login
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/dashboard.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/view/dashboard.fxml"));
                 Scene scene = new Scene(loader.load(), 500, 350);
 
                 Dashboard_Controller dashboardController = loader.getController();

@@ -7,8 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.myhealth.dboperations.DB_connections;
-import org.myhealth.dboperations.User_DataOperation;
+import org.myhealth.DAO.User_DataOperation;
 import org.myhealth.model.User;
 
 public class Signup_Controller {
@@ -36,7 +35,7 @@ public class Signup_Controller {
 
         try {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/view/login.fxml"));
 
             Scene scene = new Scene(loader.load(), 400, 350);
 

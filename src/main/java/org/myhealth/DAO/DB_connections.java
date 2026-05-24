@@ -1,4 +1,4 @@
-package org.myhealth.dboperations;
+package org.myhealth.DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

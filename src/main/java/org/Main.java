@@ -3,11 +3,8 @@ package org.myhealth;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import org.myhealth.dboperations.DB_connections;
-
-import java.io.IOException;
+import org.myhealth.DAO.DB_connections;
 
 public class Main extends Application {
 
@@ -19,7 +16,7 @@ public class Main extends Application {
         try{
 
         // This is to load the login fxml file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/login.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/view/login.fxml"));
         Scene scene = new Scene(loader.load(), 400, 300);
         stage.setTitle("MyHealth app Login");
         stage.setScene(scene);

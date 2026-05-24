@@ -4,8 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.myhealth.model.User;
 import javafx.scene.control.TextField;
-import org.myhealth.dboperations.User_DataOperation;
-import org.myhealth.model.User;
+import org.myhealth.DAO.User_DataOperation;
 
 public class Dashboard_Controller {
 
