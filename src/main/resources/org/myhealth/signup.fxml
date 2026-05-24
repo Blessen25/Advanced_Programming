@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Signup Page layout -->
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.myhealth.controller.Signup_Controller"
+           style="-fx-background-color: #f4f4f4;">
+
+    <VBox spacing="15"
+          alignment="CENTER"
+          maxWidth="320"
+          maxHeight="500"
+          prefWidth="320"
+          style="
+                -fx-background-color: white;
+                -fx-padding: 30;
+                -fx-background-radius: 15;
+                -fx-border-radius: 15;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 15, 0, 0, 5);
+          ">
+
+        <Label text="Create Account"
+               style="
+                    -fx-font-size: 22px;
+                    -fx-font-weight: bold;
+               "/>
+
+        <!-- First Name Field -->
+        <TextField fx:id="firstName_Field"
+                   promptText="First Name"
+                   prefHeight="40"/>
+
+        <!-- Last Name Field -->
+        <TextField fx:id="lastName_Field"
+                   promptText="Last Name"
+                   prefHeight="40"/>
+
+        <!-- User Name Field -->
+        <TextField fx:id="username_Field"
+                   promptText="Username"
+                   prefHeight="40"/>
+
+        <!-- Password Field -->
+        <PasswordField fx:id="password_Field"
+                       promptText="Password"
+                       prefHeight="40"/>
+
+        <!-- Signup Button -->
+        <Button text="Sign Up"
+                onAction="#handleSignup"
+                prefWidth="250"
+                prefHeight="40"
+                style="
+                    -fx-background-color: #2196F3;
+                    -fx-text-fill: white;
+                    -fx-font-size: 14px;
+                    -fx-background-radius: 8;
+                "/>
+
+        <!-- Login Button -->
+        <Button text="Already Have an Account"
+                onAction="#openLoginPage"
+                style="
+                    -fx-background-color: transparent;
+                    -fx-text-fill: #2196F3;
+                    -fx-underline: true;
+                "/>
+
+
+        <!-- To show Error -->
+        <Label fx:id="message_Label"
+               wrapText="true"
+               style="-fx-font-size: 13px;"/>
+
+
+
+    </VBox>
+
+</StackPane>
