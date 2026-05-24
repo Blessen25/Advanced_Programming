@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.myhealth.controller.Edit_Profile_Controller"
+           style="-fx-background-color: #f4f4f4;">
+
+    <VBox spacing="15"
+          alignment="CENTER"
+          maxWidth="320"
+          maxHeight="320"
+          prefWidth="320"
+          style="
+                -fx-background-color: white;
+                -fx-padding: 30;
+                -fx-background-radius: 15;
+                -fx-border-radius: 15;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 15, 0, 0, 5);
+          ">
+
+        <Label text="Edit Profile"
+               style="
+                    -fx-font-size: 22px;
+                    -fx-font-weight: bold;
+               "/>
+
+        <TextField fx:id="firstName_Field"
+                   promptText="First Name"
+                   prefHeight="40"/>
+
+        <TextField fx:id="lastName_Field"
+                   promptText="Last Name"
+                   prefHeight="40"/>
+
+        <Button text="Save Changes"
+                onAction="#handleUpdateProfile"
+                prefWidth="250"
+                prefHeight="40"
+                style="
+                    -fx-background-color: #2196F3;
+                    -fx-text-fill: white;
+                    -fx-font-size: 14px;
+                    -fx-background-radius: 8;
+                "/>
+
+        <Label fx:id="message_Label"
+               wrapText="true"
+               style="-fx-font-size: 13px;"/>
+
+    </VBox>
+
+</StackPane>

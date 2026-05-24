@@ -3,8 +3,9 @@ package org.myhealth.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.myhealth.model.User;
-import javafx.scene.control.TextField;
-import org.myhealth.DAO.User_DataOperation;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class Dashboard_Controller {
 
@@ -12,23 +13,8 @@ public class Dashboard_Controller {
     @FXML
     private Label welcome_label;
 
-    // Text field for editing first name
-    @FXML
-    private TextField firstName_Field;
-
-    // Text field for editing last name
-    @FXML
-    private TextField lastName_Field;
-
-    // Displays success/error messages
-    @FXML
-    private Label message_Label;
-
     // To Store currently logged-in user
     private User currentUser;
-
-    // Object used to access database methods
-    private final User_DataOperation userData = new User_DataOperation();
 
     // Receives logged-in user details from Login_Controller
     public void setUser(User user){
@@ -38,70 +24,31 @@ public class Dashboard_Controller {
 
         // Display Welcome Message.
         welcome_label.setText(
-                "Welcome," + user.getFirst_Name()+ " " + user.getLast_Name()
-        );
-
-        // Displays current first name
-        firstName_Field.setText(
-                user.getFirst_Name()
-        );
-
-        // Displays current last name
-        lastName_Field.setText(
-                user.getLast_Name()
+                "Welcome, " + user.getFirst_Name() + " " + user.getLast_Name()
         );
     }
 
-    /* Runs when user clicks:"Save Profile Changes" */
     @FXML
-    private void handleUpdateProfile() {
+    private void openEditProfile() {
 
-        // Gets updated names from UI
-        String newFirstName = firstName_Field.getText();
-
-        String newLastName = lastName_Field.getText();
-
-        // Prevents empty profile fields
-        if (newFirstName.isEmpty() || newLastName.isEmpty()) {
-
-            message_Label.setStyle("-fx-text-fill: red;");
-
-            message_Label.setText("First name and last name cannot be empty.");
-            return;
-        }
-
-        boolean updated = userData.updateProfile(
-                currentUser.getID(),
-                newFirstName,
-                newLastName);
-
-        // if update successful
-        if (updated) {
-
-            currentUser.setFirst_Name(
-                    newFirstName
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/myhealth/view/edit_profile.fxml")
             );
 
-            currentUser.setLast_Name(
-                    newLastName
-            );
+            Scene scene = new Scene(loader.load(), 400, 300);
 
-            // Updates welcome message immediately
-            welcome_label.setText(
-                    "Welcome, " +
-                            newFirstName +
-                            " " +
-                            newLastName
-            );
+            Edit_Profile_Controller controller = loader.getController();
+            controller.setUser(currentUser);
 
-            // Displays success message
-            message_Label.setStyle("-fx-text-fill: green;");
-            message_Label.setText("Profile updated successfully.");
-        } else {
+            Stage stage = (Stage) welcome_label.getScene().getWindow();
+            stage.setTitle("Edit Profile");
+            stage.setScene(scene);
 
-            // Displays error message
-            message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("Profile update failed.");
+        } catch (Exception e) {
+            System.out.println("Edit profile page could not be loaded: " + e);
         }
     }
+
+
 }

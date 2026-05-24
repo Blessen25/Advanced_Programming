@@ -22,34 +22,15 @@
 
     <!-- Welcome message updated from controller -->
     <Label fx:id="welcome_label"/>
-
-    <!-- Section title -->
-    <Label text="Edit Profile"/>
-
-    <!-- Text field for editing first name -->
-    <TextField fx:id="firstName_Field"
-               promptText="First Name"
-               prefHeight="40"/>
-
-    <!-- Text field for editing last name -->
-    <TextField fx:id="lastName_Field"
-               promptText="Last Name"
-               prefHeight="40"/>
-
-    <!-- Button calls handleUpdateProfile() -->
-    <Button text="Save Profile Changes"
-            onAction="#handleUpdateProfile"
+    <Button text="Edit Profile" onAction="#openEditProfile"
             prefWidth="250"
             prefHeight="40"
             style="
                     -fx-background-color: #2196F3;
                     -fx-text-fill: white;
                     -fx-font-size: 14px;
-                    -fx-background-radius: 8;
-                "/>
-
-    <!-- Displays success/error messages -->
-    <Label fx:id="message_Label"/>
+                    -fx-background-radius: 8;"
+    />
 
     <!-- Shows current health record status -->
     <Label text="Health Records: No records yet"/>
