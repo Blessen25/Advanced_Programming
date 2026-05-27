@@ -31,7 +31,24 @@
                     -fx-font-size: 14px;
                     -fx-background-radius: 8;"
     />
-
+    <Button text="Health Record"
+            prefWidth="250"
+            prefHeight="40"
+            style="
+                    -fx-background-color: #2196F3;
+                    -fx-text-fill: white;
+                    -fx-font-size: 14px;
+                    -fx-background-radius: 8;"
+    />
+    <Button text="Log Out"
+            prefWidth="250"
+            prefHeight="40"
+            style="
+                    -fx-background-color: #2196F3;
+                    -fx-text-fill: white;
+                    -fx-font-size: 14px;
+                    -fx-background-radius: 8;"
+    />
     <!-- Shows current health record status -->
     <Label text="Health Records: No records yet"/>
 

@@ -47,4 +47,31 @@ public class DB_connections {
             System.out.println(ConsoleColor.RED + "Users table got some errors " + e + ConsoleColor.RESET);
         }
     }
+
+    // Creates health_records table if it does not exist
+    public static void createHealthRecordTable() {
+
+        String sql = """
+            CREATE TABLE IF NOT EXISTS health_records (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                weight TEXT NOT NULL,
+                temperature TEXT NOT NULL,
+                blood_pressure TEXT NOT NULL,
+                note TEXT NOT NULL,
+                record_date TEXT NOT NULL,
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            );
+            """;
+
+        try (Connection connect = getConnnection();
+             Statement statement1 = connect.createStatement()) {
+
+            statement1.execute(sql);
+            System.out.println(ConsoleColor.GREEN + "Health records table is ready" + ConsoleColor.RESET);
+
+        } catch (SQLException e) {
+            System.out.println(ConsoleColor.RED + "Health records table error: " + e + ConsoleColor.RESET);
+        }
+    }
 }

@@ -13,6 +13,8 @@ public class Main extends Application {
 
         // Creates the users table when the application starts.
         DB_connections.createUserTable();
+        // Creates the Health table when the application starts.
+        DB_connections.createHealthRecordTable();
         try{
 
         // This is to load the login fxml file
