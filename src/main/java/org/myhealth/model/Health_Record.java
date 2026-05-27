@@ -12,7 +12,7 @@ public class Health_Record {
     private String recordDate;
 
     // Constructor used when creating a new health record
-    public HealthRecord(int userId, String weight, String temperature,
+    public Health_Record(int userId, String weight, String temperature,
                         String bloodPressure, String note, String recordDate) {
         this.userId = userId;
         this.weight = weight;
@@ -23,7 +23,7 @@ public class Health_Record {
     }
 
     // Constructor used when reading records from database
-    public HealthRecord(int id, int userId, String weight, String temperature,
+    public Health_Record(int id, int userId, String weight, String temperature,
                         String bloodPressure, String note, String recordDate) {
         this.id = id;
         this.userId = userId;

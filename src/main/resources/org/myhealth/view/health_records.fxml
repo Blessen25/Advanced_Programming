@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="org.myhealth.controller.HealthRecords_Controller"
+           style="-fx-background-color: #f4f4f4;">
+
+    <VBox spacing="12"
+          alignment="CENTER"
+          maxWidth="650"
+          style="
+                -fx-background-color: white;
+                -fx-padding: 25;
+                -fx-background-radius: 15;
+                -fx-border-radius: 15;
+                -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 15, 0, 0, 5);
+          ">
+
+        <Label text="Health Records"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+
+        <TextField fx:id="weight_Field" promptText="Weight" prefHeight="35"/>
+        <TextField fx:id="temperature_Field" promptText="Temperature" prefHeight="35"/>
+        <TextField fx:id="bloodPressure_Field" promptText="Blood Pressure" prefHeight="35"/>
+        <TextArea fx:id="note_Area" promptText="Short note within 50 words" prefRowCount="3"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button text="Add Record" onAction="#handleAddRecord"/>
+            <Button text="Delete Selected" onAction="#handleDeleteRecord"/>
+            <Button text="Export Records" onAction="#handleExportRecords"/>
+            <Button text="Back" onAction="#goBack_Dashboard"/>
+        </HBox>
+
+        <TableView fx:id="records_Table" prefHeight="220">
+            <columns>
+                <TableColumn fx:id="date_Column" text="Date" prefWidth="100"/>
+                <TableColumn fx:id="weight_Column" text="Weight" prefWidth="100"/>
+                <TableColumn fx:id="temperature_Column" text="Temperature" prefWidth="110"/>
+                <TableColumn fx:id="bloodPressure_Column" text="Blood Pressure" prefWidth="130"/>
+                <TableColumn fx:id="note_Column" text="Note" prefWidth="180"/>
+            </columns>
+        </TableView>
+
+        <Label fx:id="message_Label" wrapText="true"/>
+
+    </VBox>
+
+</StackPane>

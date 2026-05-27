@@ -50,5 +50,27 @@ public class Dashboard_Controller {
         }
     }
 
+    @FXML
+    private void openHealthRecords() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/myhealth/view/health_records.fxml")
+            );
+
+            Scene scene = new Scene(loader.load(), 700, 500);
+
+            HealthRecords_Controller controller = loader.getController();
+            controller.setUser(currentUser);
+
+            Stage stage = (Stage) welcome_label.getScene().getWindow();
+            stage.setTitle("Health Records");
+            stage.setScene(scene);
+
+        } catch (Exception e) {
+            System.out.println("Health records page could not be loaded: " + e);
+        }
+    }
+
 
 }
