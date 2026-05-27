@@ -90,20 +90,29 @@ public class HealthRecords_Controller {
     @FXML
     private void handleAddRecord() {
 
-        String weight = weight_Field.getText();
-        String temperature = temperature_Field.getText();
-        String bloodPressure = bloodPressure_Field.getText();
-        String note = note_Area.getText();
+        String weight = weight_Field.getText().trim();
+        String temperature = temperature_Field.getText().trim();
+        String bloodPressure = bloodPressure_Field.getText().trim();
+        String note = note_Area.getText().trim();
 
-        if (weight.isEmpty() || temperature.isEmpty() || bloodPressure.isEmpty() || note.isEmpty()) {
+        // At least one field must be completed
+        if (weight.isEmpty() && temperature.isEmpty() && bloodPressure.isEmpty() && note.isEmpty()) {
             message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("Please fill all the fields.");
+            message_Label.setText("Please enter at least one health record field.");
             return;
         }
 
-        if (note.trim().split("\\s+").length > 50) {
+        // Note must not exceed 50 words
+        if (!note.isEmpty() && note.split("\\s+").length > 50) {
             message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("Special note must be within 50 words.");
+            message_Label.setText("Note must not exceed 50 words.");
+            return;
+        }
+
+        // Note must not exceed 250 characters
+        if (note.length() > 250) {
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Note must not exceed 250 characters.");
             return;
         }
 
@@ -127,7 +136,7 @@ public class HealthRecords_Controller {
 
         } else {
             message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("There have been some errors, Failed to add health record.");
+            message_Label.setText("Failed to add health record.");
         }
     }
 

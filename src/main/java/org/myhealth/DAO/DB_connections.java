@@ -53,14 +53,14 @@ public class DB_connections {
 
         String sql = """
             CREATE TABLE IF NOT EXISTS health_records (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                user_id INTEGER NOT NULL,
-                weight TEXT NOT NULL,
-                temperature TEXT NOT NULL,
-                blood_pressure TEXT NOT NULL,
-                note TEXT NOT NULL,
-                record_date TEXT NOT NULL,
-                FOREIGN KEY (user_id) REFERENCES users(id)
+                     id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     user_id INTEGER NOT NULL,
+                     weight TEXT,
+                     temperature TEXT,
+                     blood_pressure TEXT,
+                     note TEXT,
+                     record_date TEXT NOT NULL,
+                     FOREIGN KEY (user_id) REFERENCES users(id)
             );
             """;
 

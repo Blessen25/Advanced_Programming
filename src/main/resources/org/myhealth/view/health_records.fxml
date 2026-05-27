@@ -27,10 +27,34 @@
         <TextArea fx:id="note_Area" promptText="Short note within 50 words" prefRowCount="3"/>
 
         <HBox spacing="10" alignment="CENTER">
-            <Button text="Add Record" onAction="#handleAddRecord"/>
-            <Button text="Delete Selected" onAction="#handleDeleteRecord"/>
-            <Button text="Export Records" onAction="#handleExportRecords"/>
-            <Button text="Back" onAction="#goBack_Dashboard"/>
+            <Button text="Add Record" onAction="#handleAddRecord" prefWidth="160"
+                    prefHeight="40"
+                    style="
+                    -fx-background-color: #00FF00;
+                    -fx-text-fill: black;
+                    -fx-font-size: 14px;
+                    -fx-background-radius: 8;"/>
+            <Button text="Delete Selected" onAction="#handleDeleteRecord" prefWidth="160"
+                    prefHeight="40"
+                    style="
+                    -fx-background-color: #FF0000;
+                    -fx-text-fill: white;
+                    -fx-font-size: 14px;
+                    -fx-background-radius: 8;"/>
+            <Button text="Export Records" onAction="#handleExportRecords" prefWidth="160"
+                    prefHeight="40"
+                    style="
+                    -fx-background-color: #FFFF00;
+                    -fx-text-fill: black;
+                    -fx-font-size: 14px;
+                    -fx-background-radius: 8;"/>
+            <Button text="Back" onAction="#goBack_Dashboard" prefWidth="160"
+                    prefHeight="40"
+                    style="
+                    -fx-background-color: #2196F3;
+                    -fx-text-fill: white;
+                    -fx-font-size: 14px;
+                    -fx-background-radius: 8;"/>
         </HBox>
 
         <TableView fx:id="records_Table" prefHeight="220">

@@ -41,7 +41,7 @@ public class Health_Record_Operations {
 
         List<Health_Record> records = new ArrayList<>();
 
-        String sql = "SELECT * FROM health_records WHERE user_id = ?";
+        String sql = "SELECT * FROM health_records WHERE user_id = ? ORDER BY record_date DESC, id DESC";
 
         try (Connection connect = DB_connections.getConnnection();
              PreparedStatement PreparedStatement1 = connect.prepareStatement(sql)) {
