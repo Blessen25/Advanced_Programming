@@ -72,7 +72,7 @@ public class Edit_Profile_Controller {
                         getClass().getResource("/org/myhealth/view/dashboard.fxml")
                 );
 
-                Scene scene = new Scene(loader.load(), 500, 350);
+                Scene scene = new Scene(loader.load(), 800, 600);
 
                 Dashboard_Controller dashboardController = loader.getController();
                 dashboardController.setUser(currentUser);

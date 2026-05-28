@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.myhealth.model.User;
-
+import javafx.application.Platform;
 
 public class Login_Controller {
 
@@ -38,7 +38,7 @@ public class Login_Controller {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/view/signup.fxml"));
 
-            Scene scene = new Scene(loader.load(), 400, 350);
+            Scene scene = new Scene(loader.load(), 800, 600);
 
             Stage stage = (Stage) username_Field.getScene().getWindow();
 
@@ -74,7 +74,7 @@ public class Login_Controller {
             try {
                 // Loads dashboard page after successful login
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/view/dashboard.fxml"));
-                Scene scene = new Scene(loader.load(), 500, 350);
+                Scene scene = new Scene(loader.load(), 800, 600);
 
                 Dashboard_Controller dashboardController = loader.getController();
                 // Sends logged-in user details to dashboard
@@ -96,5 +96,12 @@ public class Login_Controller {
             message_Label.setStyle("-fx-text-fill: red;");
             message_Label.setText("Invalid username or password.");
         }
+    }
+
+    // Closes the application
+    @FXML
+    private void handleExitProgram() {
+
+        Platform.exit();
     }
 }

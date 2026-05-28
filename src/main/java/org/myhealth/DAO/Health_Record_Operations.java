@@ -87,25 +87,57 @@ public class Health_Record_Operations {
         }
     }
 
-    // Exports user records into a text file
+    // Exports all health records into a text file
     public boolean exportRecords(List<Health_Record> records, String fileName) {
-
-        try (FileWriter writer = new FileWriter(fileName)) {
-
+        try (FileWriter writer1 = new FileWriter(fileName)) {
+            // Writes every health record into the file
             for (Health_Record record : records) {
-                writer.write("Date: " + record.getRecordDate() + "\n");
-                writer.write("Weight: " + record.getWeight() + "\n");
-                writer.write("Temperature: " + record.getTemperature() + "\n");
-                writer.write("Blood Pressure: " + record.getBloodPressure() + "\n");
-                writer.write("Note: " + record.getNote() + "\n");
-                writer.write("-----------------------------\n");
+
+                writer1.write("Date: " + record.getRecordDate() + "\n");
+                writer1.write("Weight: " + record.getWeight() + "\n");
+                writer1.write("Temperature: " + record.getTemperature() + "\n");
+                writer1.write("Blood Pressure: " + record.getBloodPressure() + "\n");
+                writer1.write("Note: " + record.getNote() + "\n");
+                writer1.write("-----------------------------\n");
             }
 
             return true;
-
         } catch (Exception e) {
-            System.out.println("Export error: " + e);
+
+            System.out.println(
+                    "Export error: " + e
+            );
+
             return false;
         }
+    }
+
+    // Counts how many health records belong to a user
+    public int getRecordCount(int userId) {
+
+        String sql = """
+            SELECT COUNT(*)
+            FROM health_records
+            WHERE user_id = ?
+            """;
+
+        try (Connection connect = DB_connections.getConnnection();
+             PreparedStatement PreparedStatement1 = connect.prepareStatement(sql)) {
+
+            PreparedStatement1.setInt(1, userId);
+
+            ResultSet rs = PreparedStatement1.executeQuery();
+
+            if (rs.next()) {
+
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Record count error: " + e);
+        }
+
+        return 0;
     }
 }

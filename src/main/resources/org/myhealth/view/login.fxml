@@ -5,15 +5,16 @@
 <?import javafx.scene.layout.VBox?>
 
 <!-- Login page layout. -->
+<?import javafx.scene.text.Text?>
 <StackPane xmlns:fx="http://javafx.com/fxml"
            fx:controller="org.myhealth.controller.Login_Controller"
            style="-fx-background-color: #f4f4f4;">
 
     <VBox spacing="15"
           alignment="CENTER"
-          maxWidth="320"
-          maxHeight="320"
-          prefWidth="320"
+          maxWidth="350"
+          maxHeight="350"
+          prefWidth="350"
           style="
                 -fx-background-color: white;
                 -fx-padding: 30;
@@ -56,6 +57,13 @@
                 style="
                     -fx-background-color: transparent;
                     -fx-text-fill: #2196F3;
+                    -fx-underline: true;
+                "/>
+        <Button text="Exit Program"
+                onAction="#handleExitProgram"
+                style="
+                    -fx-background-color: transparent;
+                    -fx-text-fill: #f44336;
                     -fx-underline: true;
                 "/>
 

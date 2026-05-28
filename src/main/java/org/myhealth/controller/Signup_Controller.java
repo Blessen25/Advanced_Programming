@@ -37,7 +37,7 @@ public class Signup_Controller {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/view/login.fxml"));
 
-            Scene scene = new Scene(loader.load(), 400, 350);
+            Scene scene = new Scene(loader.load(), 800, 600);
 
             Stage stage = (Stage) username_Field.getScene().getWindow();
 

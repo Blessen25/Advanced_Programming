@@ -19,7 +19,7 @@ public class Main extends Application {
 
         // This is to load the login fxml file
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/view/login.fxml"));
-        Scene scene = new Scene(loader.load(), 400, 300);
+        Scene scene = new Scene(loader.load(), 800, 600);
         stage.setTitle("MyHealth app Login");
         stage.setScene(scene);
         stage.show();

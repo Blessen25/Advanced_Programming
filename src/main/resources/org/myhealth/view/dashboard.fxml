@@ -42,6 +42,7 @@
                     -fx-background-radius: 8;"
     />
     <Button text="Log Out"
+            onAction="#handleLogout"
             prefWidth="250"
             prefHeight="40"
             style="
@@ -51,7 +52,7 @@
                     -fx-background-radius: 8;"
     />
     <!-- Shows current health record status -->
-    <Label text="Health Records: No records yet"/>
+        <Label fx:id="recordCount_Label"/>
 
 </VBox>
 

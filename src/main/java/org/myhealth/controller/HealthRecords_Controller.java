@@ -1,5 +1,6 @@
 package org.myhealth.controller;
 
+import javafx.stage.FileChooser;
 import org.myhealth.DAO.Health_Record_Operations;
 import org.myhealth.model.Health_Record;
 import javafx.collections.FXCollections;
@@ -11,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.myhealth.model.User;
+
+import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -162,22 +165,55 @@ public class HealthRecords_Controller {
         }
     }
 
-    // Exports all current user records to a text file
+    // Exports all health records into a text file selected by the user
     @FXML
     private void handleExportRecords() {
 
+        // Checks if there are any records to export
         if (recordList.isEmpty()) {
+
             message_Label.setStyle("-fx-text-fill: red;");
             message_Label.setText("No records to export.");
             return;
         }
 
-        String fileName = "health_records_user_" + currentUser.getID() + ".txt";
+        // Opens a file chooser so user can select save location
+        FileChooser fileChooser1 = new FileChooser();
 
-        if (recordData.exportRecords(recordList, fileName)) {
+        // Title displayed on file chooser window
+        fileChooser1.setTitle("Save Health Records");
+
+        // Allows only text files to be saved
+        fileChooser1.getExtensionFilters().add(
+
+                new FileChooser.ExtensionFilter("Text Files", "*.txt")
+        );
+
+        // Suggested default file name
+        fileChooser1.setInitialFileName("my_health_records.txt");
+
+        // Gets current application window
+        Stage stage = (Stage) records_Table.getScene().getWindow();
+        File file = fileChooser1.showSaveDialog(stage);
+
+        // User clicked cancel
+        if (file == null) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Export cancelled.");
+            return;
+        }
+
+        // Calls DAO method to export records into selected file
+        if (recordData.exportRecords(
+                recordList,
+                file.getAbsolutePath())) {
+
             message_Label.setStyle("-fx-text-fill: green;");
-            message_Label.setText("Records exported to " + fileName);
+            message_Label.setText("Records exported successfully.");
+
         } else {
+
             message_Label.setStyle("-fx-text-fill: red;");
             message_Label.setText("Export failed.");
         }
@@ -192,7 +228,7 @@ public class HealthRecords_Controller {
                     getClass().getResource("/org/myhealth/view/dashboard.fxml")
             );
 
-            Scene scene = new Scene(loader.load(), 500, 350);
+            Scene scene = new Scene(loader.load(), 800, 600);
 
             Dashboard_Controller dashboardController = loader.getController();
             dashboardController.setUser(currentUser);
