@@ -35,30 +35,57 @@ public class Health_Record {
     }
 
     public int getId() {
+
         return id;
     }
 
     public int getUserId() {
+
         return userId;
     }
 
     public String getWeight() {
+
         return weight;
     }
 
     public String getTemperature() {
+
         return temperature;
     }
 
     public String getBloodPressure() {
+
         return bloodPressure;
     }
 
     public String getNote() {
+
         return note;
     }
 
     public String getRecordDate() {
+
         return recordDate;
+    }
+
+    public void setWeight(String weight) {
+
+        this.weight = weight;
+    }
+
+    public void setTemperature(String temperature) {
+
+        this.temperature = temperature;
+    }
+
+    public void setBloodPressure(String bloodPressure) {
+
+        this.bloodPressure = bloodPressure;
+    }
+
+    public void setNote(String note) {
+
+        this.note = note;
     }
 }
