@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.myhealth.model.User;
 import javafx.application.Platform;
+import org.myhealth.security.HashedPassword;
 
 public class Login_Controller {
 
@@ -66,8 +67,9 @@ public class Login_Controller {
             return;
         }
 
-        // Gets user details from database if username and password match
-        User loggedInUser = userData.getUserByLogin(username, password);
+        // Converts entered password into SHA-256 hash
+        String hashedPassword = HashedPassword.hashPassword(password);
+        User loggedInUser = userData.getUserByLogin(username, hashedPassword);
 
         if (loggedInUser != null) {
 

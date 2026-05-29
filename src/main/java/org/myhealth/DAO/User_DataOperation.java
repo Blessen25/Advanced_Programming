@@ -62,26 +62,6 @@ public class User_DataOperation {
         }
     }
 
-    // Login's User to the database.
-    public boolean loginUser(String username, String password) {
-
-        String sql = "SELECT * FROM users WHERE user_Name = ? AND password = ?";
-
-        try (Connection connect = DB_connections.getConnnection();
-             PreparedStatement preparedStatment_1 = connect.prepareStatement(sql)) {
-
-            preparedStatment_1.setString(1, username);
-            preparedStatment_1.setString(2, password);
-
-            ResultSet rs = preparedStatment_1.executeQuery();
-            return rs.next();
-
-        } catch (SQLException e) {
-            System.out.println(ConsoleColor.RED + "There has been some error in loginUser " + e + ConsoleColor.RESET);
-            return false;
-        }
-    }
-
     // Gets full user details after successful login -> For Dashboard.
     public User getUserByLogin(String username, String password) {
 
@@ -138,6 +118,33 @@ public class User_DataOperation {
         } catch (SQLException e) {
 
             System.out.println(ConsoleColor.RED + "Error in Updating Profile:" + e + ConsoleColor.RESET);
+            return false;
+        }
+    }
+
+    // Updates the user's password
+    public boolean updatePassword(
+            int userId,
+            String newPassword) {
+        String sql = "UPDATE users SET password = ? WHERE id = ?";
+
+        try (Connection connect = DB_connections.getConnnection();
+             PreparedStatement PreparedStatement1 = connect.prepareStatement(sql)) {
+
+            PreparedStatement1.setString(1, newPassword);
+            PreparedStatement1.setInt(2, userId);
+
+            PreparedStatement1.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+
+            System.out.println(
+
+                    " There has been some error while updating the Password:" + e
+            );
+
             return false;
         }
     }

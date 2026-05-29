@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.myhealth.DAO.User_DataOperation;
 import org.myhealth.model.User;
+import org.myhealth.security.HashedPassword;
 
 public class Signup_Controller {
 
@@ -84,7 +85,8 @@ public class Signup_Controller {
             return;
         }
 
-        User user = new User(username, password, firstName, lastName);
+        String hashedPassword = HashedPassword.hashPassword(password);
+        User user = new User(username, hashedPassword, firstName, lastName);
 
         // Saves user into database
         if (user_Data.registerUser(user)) {
