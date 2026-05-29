@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.myhealth.model.User;
-
 import java.io.File;
 import java.time.LocalDate;
 import java.util.List;
@@ -124,24 +123,12 @@ public class HealthRecords_Controller {
         String bloodPressure = bloodPressure_Field.getText().trim();
         String note = note_Area.getText().trim();
 
-        // At least one field must be completed
-        if (weight.isEmpty() && temperature.isEmpty() && bloodPressure.isEmpty() && note.isEmpty()) {
-            message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("Please enter at least one health record field.");
-            return;
-        }
-
-        // Note must not exceed 50 words
-        if (!note.isEmpty() && note.split("\\s+").length > 50) {
-            message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("Note must not exceed 50 words.");
-            return;
-        }
-
-        // Note must not exceed 250 characters
-        if (note.length() > 250) {
-            message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("Note must not exceed 250 characters.");
+        // Uses validation method
+        if (!validateHealthRecordInput(
+                weight,
+                temperature,
+                bloodPressure,
+                note)) {
             return;
         }
 
@@ -295,27 +282,12 @@ public class HealthRecords_Controller {
         String bloodPressure = bloodPressure_Field.getText().trim();
         String note = note_Area.getText().trim();
 
-        // At least one field must be completed
-        if (weight.isEmpty() && temperature.isEmpty() && bloodPressure.isEmpty() && note.isEmpty()) {
-
-            message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("Please enter at least one field before updating.");
-            return;
-        }
-
-        // Note must not exceed 50 words
-        if (!note.isEmpty() && note.split("\\s+").length > 50) {
-
-            message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("Note must not exceed 50 words.");
-            return;
-        }
-
-        // Note must not exceed 250 characters
-        if (note.length() > 250) {
-
-            message_Label.setStyle("-fx-text-fill: red;");
-            message_Label.setText("Note must not exceed 250 characters.");
+        // Uses validation method
+        if (!validateHealthRecordInput(
+                weight,
+                temperature,
+                bloodPressure,
+                note)) {
             return;
         }
 
@@ -337,6 +309,65 @@ public class HealthRecords_Controller {
             message_Label.setStyle("-fx-text-fill: red;");
             message_Label.setText("Failed to update record.");
         }
+    }
+
+    // Checks whether the health record input is valid
+    private boolean validateHealthRecordInput(
+
+            String weight,
+            String temperature,
+            String bloodPressure,
+            String note) {
+
+        // At least one field must be completed
+        if (weight.isEmpty() && temperature.isEmpty() && bloodPressure.isEmpty() && note.isEmpty()) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Please enter at least one health record field.");
+            return false;
+        }
+
+        // Weight must be numeric if entered
+        if (!weight.isEmpty() && !weight.matches("\\d+(\\.\\d+)?")) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Weight must be numeric, for example 65 or 65.5.");
+            return false;
+        }
+
+        // Temperature must be numeric if entered
+        if (!temperature.isEmpty() && !temperature.matches("\\d+(\\.\\d+)?")) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Temperature must be numeric, for example 36 or 36.8.");
+            return false;
+        }
+
+        // Blood pressure must match format like 120/80
+        if (!bloodPressure.isEmpty() && !bloodPressure.matches("\\d+/\\d+")) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Blood pressure must be in format 120/80.");
+            return false;
+        }
+
+        // Note must be less than 250 characters
+        if (note.length() >= 250) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Note must be less than 250 characters.");
+            return false;
+        }
+
+        // Note must have less than 50 substrings when split by single space
+        if (!note.isEmpty() && note.split(" ").length >= 50) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Note must be less than 50 words.");
+            return false;
+        }
+
+        return true;
     }
 
 
