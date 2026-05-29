@@ -86,4 +86,55 @@ public class Edit_Profile_Controller {
             }
         }
     }
+
+    // Opens change password page
+    @FXML
+    private void openChangePassword() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/myhealth/view/change_password.fxml"));
+
+            Scene scene = new Scene(loader.load(), 800, 600);
+            Change_Password_Controller controller = loader.getController();
+
+            controller.setUser(currentUser);
+            Stage stage = (Stage) firstName_Field.getScene().getWindow();
+            stage.setTitle("Change Password");
+            stage.setScene(scene);
+
+        } catch (Exception e) {
+
+            System.out.println("Change password page could not be loaded: " + e);
+        }
+    }
+
+    // Returns user to dashboard page
+    @FXML
+    private void goBackDashboard() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/myhealth/view/dashboard.fxml")
+            );
+
+            Scene scene = new Scene(loader.load(), 800, 600);
+
+            Dashboard_Controller controller = loader.getController();
+
+            // Sends logged-in user back to dashboard
+            controller.setUser(currentUser);
+
+            Stage stage = (Stage) firstName_Field.getScene().getWindow();
+
+            stage.setTitle("MyHealth Dashboard");
+            stage.setScene(scene);
+
+        } catch (Exception e) {
+
+            System.out.println("Dashboard page could not be loaded: " + e);
+        }
+    }
+
 }

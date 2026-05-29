@@ -18,6 +18,14 @@ public class User {
         this.last_Name = last_Name;
     }
 
+    public User(int id, String user_Name, String password, String first_Name, String last_Name) {
+        this.id = id;
+        this.user_Name = user_Name;
+        this.password = password;
+        this.first_Name = first_Name;
+        this.last_Name = last_Name;
+    }
+
     // To return id
     public int getID() {
 
@@ -46,6 +54,11 @@ public class User {
     public String getLast_Name() {
 
         return last_Name;
+    }
+
+    public void setPassword(String password) {
+
+        this.password = password;
     }
 
     // Updates first name

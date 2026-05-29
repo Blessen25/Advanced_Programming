@@ -78,6 +78,7 @@ public class User_DataOperation {
             if (rs.next()) {
                 return new User(
 
+                        rs.getInt("id"),
                         rs.getString("user_Name"),
                         rs.getString("password"),
                         rs.getString("first_Name"),
@@ -134,18 +135,15 @@ public class User_DataOperation {
             PreparedStatement1.setString(1, newPassword);
             PreparedStatement1.setInt(2, userId);
 
-            PreparedStatement1.executeUpdate();
-
-            return true;
+            int rowsUpdated = PreparedStatement1.executeUpdate();
+            return rowsUpdated > 0;
 
         } catch (SQLException e) {
 
-            System.out.println(
-
-                    " There has been some error while updating the Password:" + e
-            );
+            System.out.println(" There has been some error while updating the Password:" + e);
 
             return false;
         }
+
     }
 }
