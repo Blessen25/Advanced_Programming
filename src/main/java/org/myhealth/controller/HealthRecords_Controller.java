@@ -77,6 +77,32 @@ public class HealthRecords_Controller {
         temperature_Column.setCellValueFactory(new PropertyValueFactory<>("temperature"));
         bloodPressure_Column.setCellValueFactory(new PropertyValueFactory<>("bloodPressure"));
         note_Column.setCellValueFactory(new PropertyValueFactory<>("note"));
+
+        // Loads selected record values into input fields
+        records_Table.setOnMouseClicked(event -> {
+
+            Health_Record selectedRecord =
+                    records_Table.getSelectionModel().getSelectedItem();
+
+            if (selectedRecord != null) {
+
+                weight_Field.setText(
+                        selectedRecord.getWeight()
+                );
+
+                temperature_Field.setText(
+                        selectedRecord.getTemperature()
+                );
+
+                bloodPressure_Field.setText(
+                        selectedRecord.getBloodPressure()
+                );
+
+                note_Area.setText(
+                        selectedRecord.getNote()
+                );
+            }
+        });
     }
 
     // Loads only the current user's records
@@ -248,6 +274,69 @@ public class HealthRecords_Controller {
         temperature_Field.clear();
         bloodPressure_Field.clear();
         note_Area.clear();
+    }
+
+    // Updates the selected health record
+    @FXML
+    private void handleEditRecord() {
+
+        Health_Record selectedRecord =
+                records_Table.getSelectionModel().getSelectedItem();
+
+        if (selectedRecord == null) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Please select a record to edit.");
+            return;
+        }
+
+        String weight = weight_Field.getText().trim();
+        String temperature = temperature_Field.getText().trim();
+        String bloodPressure = bloodPressure_Field.getText().trim();
+        String note = note_Area.getText().trim();
+
+        // At least one field must be completed
+        if (weight.isEmpty() && temperature.isEmpty() && bloodPressure.isEmpty() && note.isEmpty()) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Please enter at least one field before updating.");
+            return;
+        }
+
+        // Note must not exceed 50 words
+        if (!note.isEmpty() && note.split("\\s+").length > 50) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Note must not exceed 50 words.");
+            return;
+        }
+
+        // Note must not exceed 250 characters
+        if (note.length() > 250) {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Note must not exceed 250 characters.");
+            return;
+        }
+
+        selectedRecord.setWeight(weight);
+        selectedRecord.setTemperature(temperature);
+        selectedRecord.setBloodPressure(bloodPressure);
+        selectedRecord.setNote(note);
+
+        if (recordData.updateRecord(selectedRecord)) {
+
+            message_Label.setStyle("-fx-text-fill: green;");
+            message_Label.setText("Record updated successfully.");
+
+            clearFields();
+            loadRecords();
+
+        } else {
+
+            message_Label.setStyle("-fx-text-fill: red;");
+            message_Label.setText("Failed to update record.");
+        }
     }
 
 

@@ -140,4 +140,30 @@ public class Health_Record_Operations {
 
         return 0;
     }
+
+    public boolean updateRecord(Health_Record record) {
+
+        String sql = """
+            UPDATE health_records
+            SET weight = ?, temperature = ?, blood_pressure = ?, note = ?
+            WHERE id = ?
+            """;
+
+        try (Connection connect = DB_connections.getConnnection();
+             PreparedStatement PreparedStatement1 = connect.prepareStatement(sql)) {
+
+            PreparedStatement1.setString(1, record.getWeight());
+            PreparedStatement1.setString(2, record.getTemperature());
+            PreparedStatement1.setString(3, record.getBloodPressure());
+            PreparedStatement1.setString(4, record.getNote());
+            PreparedStatement1.setInt(5, record.getId());
+
+            PreparedStatement1.executeUpdate();
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Update record error: " + e);
+            return false;
+        }
+    }
 }

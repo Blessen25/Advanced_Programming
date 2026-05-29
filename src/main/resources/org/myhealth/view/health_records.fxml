@@ -27,28 +27,36 @@
         <TextArea fx:id="note_Area" promptText="Short note within 50 words" prefRowCount="3"/>
 
         <HBox spacing="10" alignment="CENTER">
-            <Button text="Add Record" onAction="#handleAddRecord" prefWidth="160"
+            <Button text="Add Record" onAction="#handleAddRecord" prefWidth="130"
                     prefHeight="40"
                     style="
                     -fx-background-color: #00FF00;
                     -fx-text-fill: black;
                     -fx-font-size: 14px;
                     -fx-background-radius: 8;"/>
-            <Button text="Delete Selected" onAction="#handleDeleteRecord" prefWidth="160"
+            <Button text="Delete Selected" onAction="#handleDeleteRecord" prefWidth="130"
                     prefHeight="40"
                     style="
                     -fx-background-color: #FF0000;
                     -fx-text-fill: white;
                     -fx-font-size: 14px;
                     -fx-background-radius: 8;"/>
-            <Button text="Export Records" onAction="#handleExportRecords" prefWidth="160"
+            <Button text="Edit Records" onAction="#handleEditRecord" prefWidth="130"
+                    prefHeight="40"
+                    style="
+                    -fx-background-color: #00FF00;
+                    -fx-text-fill: black;
+                    -fx-font-size: 14px;
+                    -fx-background-radius: 8;"/>
+
+            <Button text="Export Records" onAction="#handleExportRecords" prefWidth="130"
                     prefHeight="40"
                     style="
                     -fx-background-color: #FFFF00;
                     -fx-text-fill: black;
                     -fx-font-size: 14px;
                     -fx-background-radius: 8;"/>
-            <Button text="Back" onAction="#goBack_Dashboard" prefWidth="160"
+            <Button text="Back" onAction="#goBack_Dashboard" prefWidth="130"
                     prefHeight="40"
                     style="
                     -fx-background-color: #2196F3;
