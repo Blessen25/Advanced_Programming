@@ -1,4 +1,4 @@
-package org.myhealth.controller;
+package org.myhealth.validation;
 
 public class Password_Validator {
 

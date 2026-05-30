@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import org.myhealth.DAO.User_DataOperation;
 import org.myhealth.model.User;
 import org.myhealth.security.HashedPassword;
+import org.myhealth.validation.Password_Validator;
 
 public class Change_Password_Controller {
 

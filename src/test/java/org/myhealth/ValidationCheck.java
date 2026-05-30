@@ -1,6 +1,6 @@
 package org.myhealth;
 import org.junit.jupiter.api.Test;
-import org.myhealth.controller.Password_Validator;
+import org.myhealth.validation.Password_Validator;
 import org.myhealth.security.HashedPassword;
 import static org.junit.jupiter.api.Assertions.*;
 
